@@ -17,9 +17,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
 import com.maersk.container.bookings.model.ErrorResponse;
-import com.maersk.container.bookings.webclient.ApiCaller;
 
 @ControllerAdvice
 public class ExceptionHandler extends ResponseEntityExceptionHandler {
