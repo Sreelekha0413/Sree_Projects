@@ -14,9 +14,10 @@ public class IntegerEnumValidatorImpl implements ConstraintValidator<IntegerEnum
 	@Override
 	public void initialize(IntegerEnumValidator constraint) {
 		enumValueList = new ArrayList<Integer>();
-		for(int value : constraint.validValues()) {
+		for(int value : constraint.acceptedValues()) {
 			enumValueList.add(value);
 		}
+		System.out.println(enumValueList);
 		
 	}
 	@Override

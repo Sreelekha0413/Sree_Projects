@@ -14,14 +14,15 @@ public class StringEnumValidatorImpl implements ConstraintValidator<StringEnumVa
     @Override
     public void initialize(StringEnumValidator constraint) {
     	enumValueList = new ArrayList<String>();
-    	for(String value : constraint.validValues()) {
+    	for(String value : constraint.acceptedValues()) {
     		enumValueList.add(value.toUpperCase());
     	}
+    	System.out.println(enumValueList);
     }
     
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		return false;
+		return enumValueList.contains(value.toUpperCase());
 	}
 	
 

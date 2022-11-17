@@ -18,7 +18,7 @@ import java.lang.annotation.*;
 public @interface StringEnumValidator {
 	
 	
-	  String[] validValues();
+	  String[] acceptedValues();
 
 	  String message() default "Value is not valid";
 

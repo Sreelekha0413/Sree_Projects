@@ -16,7 +16,7 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 @NotNull(message = "Value cannot be null")
 public @interface IntegerEnumValidator {
-	public int[] validValues();
+	public int[] acceptedValues();
 
 	  String message() default "Value is not valid";
 
