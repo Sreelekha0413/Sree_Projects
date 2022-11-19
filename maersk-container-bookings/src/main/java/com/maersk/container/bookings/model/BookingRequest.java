@@ -5,13 +5,23 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import com.maersk.container.bookings.annotations.DateValidator;
 
 public class BookingRequest extends AvailabilityCheckRequest {
 
 	@DateValidator(message = "Invalid Date. Date must be in ISO-8601 Format")
 	private String timestamp;
+	
+
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
+
 
 	public BookingRequest(@NotEmpty(message = "containerType is required") String containerType,
 			@NotNull(message = "containerSize is required") int containerSize,
@@ -22,7 +32,5 @@ public class BookingRequest extends AvailabilityCheckRequest {
 		super(containerType, containerSize, origin, destination, quantity);
 		this.timestamp = timestamp;
 	}
-
-	
 
 }

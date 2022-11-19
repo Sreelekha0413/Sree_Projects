@@ -30,11 +30,17 @@ public class ContainerBookingsController {
 
 	@PostMapping(value = "/checkAvailable", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<AvailabilityCheckResponse> availabilityCheck(
+	public ResponseEntity<AvailabilityCheckResponse> CheckAvailability(
 			@Valid @RequestBody AvailabilityCheckRequest availabilityRequest) {
 		AvailabilityCheckResponse response = service.checkAvailability(availabilityRequest);
 		this.logger.info("Third party API Response: {}", response.isAvailable());
-		return new ResponseEntity<>(response, HttpStatus.CREATED);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<BookingResponse> bookContainer(@Valid @RequestBody BookingRequest request) {
+		this.logger.info("");
+		return new ResponseEntity<>(service.bookContainer(request), HttpStatus.CREATED);
 	}
 
 }
