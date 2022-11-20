@@ -5,7 +5,9 @@ maersk:
       hostname: maersk.com
       protocal: https
       contextPath: api/bookings/checkAvailable
-      
+
+logging:  level:    web: DEBUG
+          
 spring:
   application:
     name: maersk-container-bookings
