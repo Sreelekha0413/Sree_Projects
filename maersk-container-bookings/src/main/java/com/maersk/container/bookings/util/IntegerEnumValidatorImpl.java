@@ -8,6 +8,12 @@ import javax.validation.ConstraintValidatorContext;
 
 import com.maersk.container.bookings.annotations.IntegerEnumValidator;
 
+
+/**
+ * @author Sreelekha
+ * Class to validate if the input value is in Enum list or not
+ *
+ */
 public class IntegerEnumValidatorImpl implements ConstraintValidator<IntegerEnumValidator, Integer>{
 
 	private List<Integer> enumValueList;
@@ -20,6 +26,10 @@ public class IntegerEnumValidatorImpl implements ConstraintValidator<IntegerEnum
 		System.out.println(enumValueList);
 		
 	}
+	
+	/**
+	 * validate if the value is in Enum list or not
+	 */
 	@Override
 	public boolean isValid(Integer value, ConstraintValidatorContext context) {
 		return enumValueList.contains(value);

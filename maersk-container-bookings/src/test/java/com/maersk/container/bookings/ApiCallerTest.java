@@ -20,11 +20,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-
 import com.maersk.container.bookings.model.AvailabilityCheckRequest;
 import com.maersk.container.bookings.model.AvailabilityCheckResponse;
 import com.maersk.container.bookings.model.AvailabilityContainersResponse;
-import com.maersk.container.bookings.service.BookingContainerService;
 import com.maersk.container.bookings.webclient.ApiCaller;
 
 @SpringBootTest
@@ -47,15 +45,9 @@ public class ApiCallerTest {
 		AvailabilityContainersResponse response = new AvailabilityContainersResponse(6);
 		Mockito.when(restTemplate.exchange("https://maersk.com/api/bookings/checkAvailable", HttpMethod.POST, entity,
 				Object.class)).thenReturn(new ResponseEntity<Object>(response, HttpStatus.OK));
-		AvailabilityContainersResponse count = new AvailabilityContainersResponse(6);
 		ResponseEntity<Object> expResp1 = api.getAvaialbleContainer(request);
 		AvailabilityCheckResponse expResp = new AvailabilityCheckResponse();
 		expResp.setAvailable(true);
-
-		// AvailabilityCheckResponse resp = service.checkAvailability(request);
-		System.out.println("After Service call: ");
-		System.out.println("resp: " + expResp1.getStatusCode());
-		System.out.println("resp message: " + expResp1.getBody().toString());
 		Assertions.assertEquals(true, expResp1.getBody().toString().contains("6"));
 
 	}

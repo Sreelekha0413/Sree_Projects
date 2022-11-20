@@ -1,7 +1,11 @@
 maersk:
   booking:
-    container:
-      count:6
+    api:
+      count: 6
+      hostname: maersk.com
+      protocal: https
+      contextPath: api/bookings/checkAvailable
+      
 spring:
   application:
     name: maersk-container-bookings

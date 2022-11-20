@@ -39,7 +39,7 @@ public class ContainerBookingsController {
 
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<BookingResponse> bookContainer(@Valid @RequestBody BookingRequest request) {
-		this.logger.info("");
+		this.logger.info("Booking API Request Payload {} ", request);
 		return new ResponseEntity<>(service.bookContainer(request), HttpStatus.CREATED);
 	}
 

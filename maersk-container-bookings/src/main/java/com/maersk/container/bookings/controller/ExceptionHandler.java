@@ -19,11 +19,20 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import com.maersk.container.bookings.model.ErrorResponse;
 
+/**
+ * @author Sreelekha
+ * @Class to handle all the exceptions globally that occurs during the execution
+ *        of API
+ *
+ */
 @ControllerAdvice
 public class ExceptionHandler extends ResponseEntityExceptionHandler {
 
 	Logger logger = LoggerFactory.getLogger(ResponseEntityExceptionHandler.class);
 
+	/**
+	 * Method to handle exceptions thrown due to invalid request body parameters.
+	 */
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -36,6 +45,9 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
 	}
 
+	/**
+	 * Method to handle exceptions thrown from Third Party API.
+	 */
 	@org.springframework.web.bind.annotation.ExceptionHandler(HttpClientErrorException.class)
 	public ResponseEntity<?> handleApiClientException(HttpClientErrorException ex) {
 		logger.error("Error from Third Party API : errorCode: {} and errorResponse {}", ex.getStatusCode(),
@@ -44,6 +56,9 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
 		return ResponseEntity.status(ex.getStatusCode()).body(ex.getResponseBodyAsString());
 	}
 
+	/**
+	 * Method to handle exceptions thrown from Third Party API.
+	 */
 	@org.springframework.web.bind.annotation.ExceptionHandler(HttpServerErrorException.class)
 	public ResponseEntity<?> handleApiServerException(HttpServerErrorException ex) {
 		logger.error("Error from Third Party API : errorCode: {} and errorResponse {}", ex.getStatusCode(),
@@ -52,6 +67,10 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
 		return ResponseEntity.status(ex.getStatusCode()).body(ex.getResponseBodyAsString());
 	}
 
+	/**
+	 * Method to handle exceptions thrown from Cassandra Database or any other
+	 * exceptions.
+	 */
 	@org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorResponse> handleGenericException(Exception ex) {
 		ErrorResponse response = new ErrorResponse(500, "Sorry there was a problem processing your request");
