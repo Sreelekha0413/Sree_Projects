@@ -29,8 +29,8 @@ public class AvailabilityCheckRequest {
 	private String destination;
 
 	@NotNull(message = "quantity is required")
-	@Min(value = 1, message = "quentity must be greater than 0.")
-	@Max(value = 100, message = "quentity must be less than 100.")
+	@Min(value = 1, message = "quentity must be greater than 0")
+	@Max(value = 100, message = "quentity must be less than 100")
 	private int quantity;
 
 	public String getContainerType() {

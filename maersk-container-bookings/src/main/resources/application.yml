@@ -1,8 +1,11 @@
+maersk:
+  booking:
+    container:
+      count:6
 spring:
   application:
     name: maersk-container-bookings
   data:    cassandra:      keyspace-name: maersk
-      contact-points:      - 127.0.0.1
-      port: 9042
+      contact-points: localhost      port: 9042
       local-datacenter: datacenter1
       schema-action: CREATE_IF_NOT_EXISTS
